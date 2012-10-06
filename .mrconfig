@@ -7,7 +7,6 @@ include = cat /usr/share/mr/* 2>/dev/null || true
 lib = git config --global credential.helper 'cache --timeout=3600';
       GITHUB="git clone https://github.com/altercation"
       ES=es-
-      _Conform () { echo "HELLO!!!!!!!!"; _script="$HOME/$1/conform_$1"; [ -e "$_script" ] && "$_script"; }
 
 # anx - git-annex - aud, img, vid
 # inf - info, research (subdirs but monolithic)
@@ -56,7 +55,7 @@ chain = true
 [etc]
 lib = TARGET=etc
 checkout = $GITHUB/$ES$TARGET.git $TARGET
-fixups = _Conform
+fixups = $HOME/$TARGET/conform
 chain = true
 
 [bin]
