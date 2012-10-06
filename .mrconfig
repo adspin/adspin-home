@@ -1,0 +1,79 @@
+[DEFAULT]
+# Include all available libs.
+include = cat /usr/share/mr/* 2>/dev/null || true
+lib = GITHUB=https://github.com/altercation
+
+# anx - git-annex - aud, img, vid
+# bin - scripts (no subdirs)
+# etc - config (possible subdires)
+# inf - info, research (subdirs but monolithic)
+# org - organization, tasks, notes (
+# pro - projects
+# rec - records
+# sec - secure data - possibly subdir of etc via vcsh
+# sys - systems related (what here if not etc/bin/var)
+# txt - txt/notes
+# var - local data store
+
+# anx - git-annex - aud, img, vid
+# inf - info, research (subdirs but monolithic)
+# org - organization, tasks, notes (
+# pro - projects
+# rec - records
+# sys - systems related (what here if not etc/bin/var)
+# txt - txt/notes
+
+[anx]
+lib = TARGET=anx
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
+[inf]
+lib = TARGET=inf
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
+[ord]
+lib = TARGET=ord
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
+[pro]
+lib = TARGET=ord
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
+[rec]
+lib = TARGET=ord
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
+[sys]
+lib = TARGET=ord
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
+[txt]
+lib = TARGET=ord
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
+[etc]
+lib = TARGET=etc
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
+[bin]
+lib = TARGET=bin
+checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+fixups = conform_links $TARGET
+chain = true
+
