@@ -7,11 +7,17 @@ include = cat /usr/share/mr/* 2>/dev/null || true
 lib = git config --global credential.helper 'cache --timeout=3600';
       GITHUB="git clone https://github.com/altercation"
       ES=es-
-      conform_links ()
+      _Conform_Dotfiles ()
       {
-      cd $HOME
-      find $HOME/$1 -name ".*" ! -name ".git*" -exec ln -s \{\} . \;
-      # -maxdepth 2
+      _df_root="$HOME/etc" _df_trash="$HOME/tmp/_df_trash" _known_df=()
+      cd $HOME; rm -rf "$_df_trash"; mkdir -p "$_df_trash"
+      _Clear_And_Link () {
+          _df="$HOME/$(basename "$1")"; mv "$_df" "$_df_trash";
+          ln -s "$1" "$_df" && _known_df=(${_known_df[@]} "$_df") || echo "FAILED TO LINK $1"; }
+      find "$_df_root" -name ".*" ! -name ".git" -exec _Clear_And_Link \{\} \;
+      _garbage="$(ls -A1)"; for _file in "${_known_df[@]}"; do _garbage="$(echo "$_garbage" | grep -v "$_file")"; done
+      echo -e "\nFollowing dotfiles are unmanaged:"
+      echo "$_garbage" | egrep "^\."
       }
 
 # anx - git-annex - aud, img, vid
@@ -21,6 +27,7 @@ lib = git config --global credential.helper 'cache --timeout=3600';
 # rec - records
 # sys - systems related (what here if not etc/bin/var)
 # txt - txt/notes
+# ent - entropy - tmp directory
 
 [anx]
 lib = TARGET=anx
@@ -78,11 +85,11 @@ chain = true
 
 [shr]
 
-[tmp]
+[ent]
 # This is a dummy target, all it does is run fixups
 # at the end of an update.
 fixups = #$HOME/bin/conform
-checkout = mkdir -p $HOME/tmp
+checkout = mkdir -p $HOME/ent
 status = :
 order = 25
 
