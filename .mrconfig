@@ -77,7 +77,7 @@ fixups = conform_links $TARGET
 chain = true
 
 [shr]
-checkout = [ ! -d $HOME/shr ] && mkdir -p $HOME/shr || echo "TEST SHR PRESENT" > test.txt
+checkout = [ ! -d $HOME/shr ] && mkdir -p $HOME/shr || echo "TEST SHR PRESENT" > $HOME/test.txt
 status = :
 order = 25
 
