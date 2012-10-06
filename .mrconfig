@@ -77,10 +77,6 @@ fixups = conform_links $TARGET
 chain = true
 
 [shr]
-skip = test -d $HOME/shr
-checkout = echo "TEST SHR ALREADY PRESENT" > $HOME/test.txt
-status = :
-order = 25
 
 [tmp]
 # This is a dummy target, all it does is run fixups
