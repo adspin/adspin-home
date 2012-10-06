@@ -4,7 +4,8 @@
 [DEFAULT]
 # Include all available libs.
 include = cat /usr/share/mr/* 2>/dev/null || true
-lib = GITHUB="git credential-cache --timeout=600 clone https://github.com/altercation"
+lib = git config --global credential.helper 'cache --timeout=3600';
+      GITHUB="git clone https://github.com/altercation"
       ES=es-
       conform_links ()
       {
