@@ -64,19 +64,19 @@ lib = TARGET=bin
 checkout = $GITHUB/$ES$TARGET.git $TARGET
 chain = true
 
-[shr]
+#[shr]
 
-[ent]
+#[ent]
 # This is a dummy target, all it does is run fixups
 # at the end of an update.
-fixups = #$HOME/bin/conform
-checkout = mkdir -p $HOME/ent
-status = :
-order = 25
+#fixups = #$HOME/bin/conform
+#checkout = mkdir -p $HOME/ent
+#status = :
+#order = 25
 
-[/etc]
+#[/etc]
 # I use etckeeper to keep /etc in git.
 # But it only works if I'm root, 
 # and if it's not already in etc, skip it.
-skip = ! test -d /etc/.git || ! test "$(whoami)" = root
+#skip = ! test -d /etc/.git || ! test "$(whoami)" = root
 
