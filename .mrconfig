@@ -1,19 +1,17 @@
+# run this in mr bootstrap mode via:
+# mr --trust-all bootstrap https://raw.github.com/altercation/$EShome/master/.mrconfig
+
 [DEFAULT]
 # Include all available libs.
 include = cat /usr/share/mr/* 2>/dev/null || true
 lib = GITHUB=https://github.com/altercation
-
-# anx - git-annex - aud, img, vid
-# bin - scripts (no subdirs)
-# etc - config (possible subdires)
-# inf - info, research (subdirs but monolithic)
-# org - organization, tasks, notes (
-# pro - projects
-# rec - records
-# sec - secure data - possibly subdir of etc via vcsh
-# sys - systems related (what here if not etc/bin/var)
-# txt - txt/notes
-# var - local data store
+      ES=es-
+      conform_links ()
+      {
+      cd $HOME
+      find $HOME/$1 -name ".*" ! -name ".git*" -exec ln -s \{\} . \;
+      # -maxdepth 2
+      }
 
 # anx - git-annex - aud, img, vid
 # inf - info, research (subdirs but monolithic)
@@ -25,55 +23,69 @@ lib = GITHUB=https://github.com/altercation
 
 [anx]
 lib = TARGET=anx
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [inf]
 lib = TARGET=inf
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [ord]
 lib = TARGET=ord
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [pro]
 lib = TARGET=ord
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [rec]
 lib = TARGET=ord
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [sys]
 lib = TARGET=ord
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [txt]
 lib = TARGET=ord
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [etc]
 lib = TARGET=etc
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [bin]
 lib = TARGET=bin
-checkout = git clone $GITHUB/es-$TARGET.git $TARGET
+checkout = git clone $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
+
+[tmp]
+# This is a dummy target, all it does is run fixups
+# at the end of an update.
+fixups = $HOME/bin/conform
+checkout = mkdir -p $HOME/tmp
+status = :
+order = 25
+
+[/etc]
+# I use etckeeper to keep /etc in git.
+# But it only works if I'm root, 
+# and if it's not already in etc, skip it.
+skip = ! test -d /etc/.git || ! test "$(whoami)" = root
 
