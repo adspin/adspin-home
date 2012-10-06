@@ -41,25 +41,25 @@ fixups = conform_links $TARGET
 chain = true
 
 [pro]
-lib = TARGET=ord
+lib = TARGET=pro
 checkout = $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [rec]
-lib = TARGET=ord
+lib = TARGET=rec
 checkout = $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [sys]
-lib = TARGET=ord
+lib = TARGET=sys
 checkout = $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
 [txt]
-lib = TARGET=ord
+lib = TARGET=txt
 checkout = $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
@@ -76,10 +76,15 @@ checkout = $GITHUB/$ES$TARGET.git $TARGET
 fixups = conform_links $TARGET
 chain = true
 
+[shr]
+checkout = [ ! -d $HOME/shr ] && mkdir -p $HOME/shr || echo "TEST SHR PRESENT" > test.txt
+status = :
+order = 25
+
 [tmp]
 # This is a dummy target, all it does is run fixups
 # at the end of an update.
-fixups = $HOME/bin/conform
+fixups = #$HOME/bin/conform
 checkout = mkdir -p $HOME/tmp
 status = :
 order = 25
