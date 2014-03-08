@@ -1,12 +1,12 @@
 # run this in mr bootstrap mode via:
-# mr --trust-all bootstrap https://raw.github.com/altercation/$EShome/master/.mrconfig
+# mr --trust-all bootstrap https://raw.github.com/adspin/adspin-home/master/.mrconfig
 
 [DEFAULT]
 # Include all available libs.
 include = cat /usr/share/mr/* 2>/dev/null || true
 lib = git config --global credential.helper 'cache --timeout=3600';
-      GITHUB="git clone https://github.com/altercation"
-      ES=es-
+      GITHUB="git clone https://github.com/adspin"
+      ADS=adspin-
 
 # anx - git-annex - aud, img, vid
 # inf - info, research (subdirs but monolithic)
@@ -19,48 +19,48 @@ lib = git config --global credential.helper 'cache --timeout=3600';
 
 [anx]
 lib = TARGET=anx
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 chain = true
 
 [inf]
 lib = TARGET=inf
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 chain = true
 
 [ord]
 lib = TARGET=ord
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 chain = true
 
 [pro]
 lib = TARGET=pro
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 chain = true
 
 [rec]
 lib = TARGET=rec
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 chain = true
 
 [sys]
 lib = TARGET=sys
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 chain = true
 
 [txt]
 lib = TARGET=txt
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 chain = true
 
 [etc]
 lib = TARGET=etc
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 fixups = $HOME/$TARGET/conform
 chain = true
 
 [bin]
 lib = TARGET=bin
-checkout = $GITHUB/$ES$TARGET.git $TARGET
+checkout = $GITHUB/$ADS$TARGET.git $TARGET
 chain = true
 
 #[shr]
